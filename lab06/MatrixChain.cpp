@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 
 using namespace std;
 
@@ -31,7 +32,7 @@ void MatrixChainOrder(vector<int> dim) {
 	for (int l = 2; l < n; l++){
 		for (int i = 1; i < n - l + 1; i++){
 			int j = i + l - 1;
-			m[i][j] = 2147483647;
+			m[i][j] = INT_MAX;
 			for (int k = i; k <= j - 1; k++){
 				int p = dim[i-1] * dim[k] * dim[j];
 				int q = m[i][k] + m[k + 1][j] + p;
@@ -44,6 +45,7 @@ void MatrixChainOrder(vector<int> dim) {
 	}
 	cout << m[1][n-1] << endl;
 	printOptimal(s, 1, dim.size()-1);
+	cout << endl;
 }
 
 
